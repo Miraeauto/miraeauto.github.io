@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://miraeauto.github.io/sitemap.xml
