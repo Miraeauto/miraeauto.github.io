@@ -1,5 +1,38 @@
 [
   {
+    "slug": "hyundai-sonata-dn8-rear-bumper",
+    "title": "현대 쏘나타 DN8 뒷범퍼 보수도장 · 하단범퍼 교환",
+    "car": "현대 쏘나타 (DN8)",
+    "part": "뒷범퍼 · 하단범퍼",
+    "work": "보수도장 · 하단범퍼 교환",
+    "summary": "뒷범퍼 옆면이 긁히고, 아래쪽 검은 하단범퍼가 깨지고 까진 상태였습니다. 긁힌 뒷범퍼는 보수도장하고, 손상된 하단범퍼는 새 부품으로 교환했습니다.",
+    "services": [
+      "dosaek"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "쏘나타 DN8 뒷범퍼 옆면 긁힘, 수리 전",
+        "caption": "수리 전 · 뒷범퍼 옆면 긁힘"
+      },
+      {
+        "file": "02-before-lower.jpg",
+        "alt": "쏘나타 DN8 하단범퍼 깨짐, 수리 전",
+        "caption": "수리 전 · 하단범퍼 깨짐과 까짐"
+      },
+      {
+        "file": "04-new-lower-bumper.jpg",
+        "alt": "교환용 새 하단범퍼",
+        "caption": "작업 중 · 교환할 새 하단범퍼"
+      },
+      {
+        "file": "05-after.jpg",
+        "alt": "도장 부스에서 보수도장을 마친 뒷범퍼",
+        "caption": "수리 후 · 도장 부스에서 보수도장을 마친 뒷범퍼"
+      }
+    ]
+  },
+  {
     "slug": "audi-a6-rust-repair",
     "draft": true,
     "title": "아우디 A6 뒷휀다 녹 제거 · 방청 및 외형복원",
