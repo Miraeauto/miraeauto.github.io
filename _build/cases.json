@@ -1,5 +1,380 @@
 [
   {
+    "slug": "hyundai-ioniq-6-n-fender-bumper",
+    "title": "현대 아이오닉 6 N 앞휀다 판금 · 앞범퍼 교환",
+    "car": "현대 아이오닉 6 N",
+    "part": "앞휀다 · 앞범퍼",
+    "work": "판금 · 도장 · 범퍼 교환",
+    "summary": "앞휀다는 판금으로 복원한 뒤 퍼티·서페이서 작업을 거쳐 도장했고, 앞범퍼는 새 부품으로 교환해 차량 색에 맞춰 도장했습니다.",
+    "services": [
+      "pangeum",
+      "dosaek"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "작업한 차량, 아이오닉 6 N",
+        "caption": "작업한 차량 · 아이오닉 6 N"
+      },
+      {
+        "file": "02-work.jpg",
+        "alt": "작업 중, 앞휀다 판금 후 퍼티",
+        "caption": "작업 중 · 앞휀다 판금 후 퍼티"
+      },
+      {
+        "file": "03-work.jpg",
+        "alt": "작업 중, 앞휀다 서페이서",
+        "caption": "작업 중 · 앞휀다 서페이서"
+      },
+      {
+        "file": "04-work.jpg",
+        "alt": "작업 중, 앞휀다 도장",
+        "caption": "작업 중 · 앞휀다 도장"
+      },
+      {
+        "file": "05-work.jpg",
+        "alt": "작업 중, 교환할 앞범퍼 도장",
+        "caption": "작업 중 · 교환할 앞범퍼 도장"
+      },
+      {
+        "file": "06-work.jpg",
+        "alt": "작업 중, 범퍼 하단 부품 도장",
+        "caption": "작업 중 · 범퍼 하단 부품 도장"
+      },
+      {
+        "file": "07-work.jpg",
+        "alt": "작업 중, 검은색 부품 도장",
+        "caption": "작업 중 · 검은색 부품 도장"
+      }
+    ]
+  },
+  {
+    "slug": "kia-sorento-front-bumper",
+    "title": "기아 쏘렌토 앞범퍼 수리 · 보수도장",
+    "car": "기아 쏘렌토",
+    "part": "앞범퍼",
+    "work": "보수도장",
+    "summary": "앞범퍼 옆면이 긁히고 찍힌 상태였습니다. 범퍼를 떼어내 퍼티와 서페이서로 바탕을 잡고, 원래 색에 맞춰 보수도장했습니다.",
+    "services": [
+      "dosaek"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "수리 전, 앞범퍼 긁힘과 찍힘",
+        "caption": "수리 전 · 앞범퍼 긁힘과 찍힘"
+      },
+      {
+        "file": "02-work.jpg",
+        "alt": "작업 중, 퍼티 작업",
+        "caption": "작업 중 · 퍼티 작업"
+      },
+      {
+        "file": "03-work.jpg",
+        "alt": "작업 중, 서페이서 도포",
+        "caption": "작업 중 · 서페이서 도포"
+      },
+      {
+        "file": "04-after.jpg",
+        "alt": "수리 후, 보수도장 마친 앞범퍼",
+        "caption": "수리 후 · 보수도장 마친 앞범퍼"
+      },
+      {
+        "file": "05-after.jpg",
+        "alt": "수리 후, 앞범퍼 옆면",
+        "caption": "수리 후 · 앞범퍼 옆면"
+      }
+    ]
+  },
+  {
+    "slug": "kgm-khan-sports-rear-fender",
+    "title": "KGM 렉스턴 스포츠 칸 뒷휀다 판금도장",
+    "car": "KGM 렉스턴 스포츠 칸",
+    "part": "뒷휀다",
+    "work": "판금 · 도장",
+    "summary": "뒷휀다가 크게 찌그러지고 긁힌 상태였습니다. 판금으로 형태를 잡은 뒤 퍼티와 서페이서로 바탕을 만들고, 도장 부스에서 도장해 마감했습니다.",
+    "services": [
+      "pangeum",
+      "dosaek"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "수리 전, 뒷휀다 찌그러짐과 긁힘",
+        "caption": "수리 전 · 뒷휀다 찌그러짐과 긁힘"
+      },
+      {
+        "file": "02-before.jpg",
+        "alt": "수리 전, 뒷도어 쪽까지 이어진 손상",
+        "caption": "수리 전 · 뒷도어 쪽까지 이어진 손상"
+      },
+      {
+        "file": "03-work.jpg",
+        "alt": "작업 중, 판금 후 도장면 연마",
+        "caption": "작업 중 · 판금 후 도장면 연마"
+      },
+      {
+        "file": "04-work.jpg",
+        "alt": "작업 중, 퍼티로 굴곡 메우기",
+        "caption": "작업 중 · 퍼티로 굴곡 메우기"
+      },
+      {
+        "file": "05-work.jpg",
+        "alt": "작업 중, 서페이서 도포",
+        "caption": "작업 중 · 서페이서 도포"
+      },
+      {
+        "file": "06-after.jpg",
+        "alt": "수리 후, 도장 마친 뒷휀다",
+        "caption": "수리 후 · 도장 마친 뒷휀다"
+      }
+    ]
+  },
+  {
+    "slug": "kia-ray-ev-front-bumper",
+    "title": "기아 레이 EV 앞범퍼 보수도장",
+    "car": "기아 레이 EV",
+    "part": "앞범퍼 (운전석 쪽 모서리)",
+    "work": "판금 · 보수도장",
+    "summary": "앞범퍼 모서리가 눌리고 긁힌 상태였습니다. 눌린 부분을 펴고 보수도장해 원래 모양과 색으로 되돌렸습니다.",
+    "services": [
+      "pangeum",
+      "dosaek"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "수리 전, 앞범퍼 모서리 눌림",
+        "caption": "수리 전 · 앞범퍼 모서리 눌림"
+      },
+      {
+        "file": "02-before.jpg",
+        "alt": "수리 전, 눌리고 긁힌 부위",
+        "caption": "수리 전 · 눌리고 긁힌 부위"
+      },
+      {
+        "file": "03-before.jpg",
+        "alt": "수리 전, 손상 부위 가까이",
+        "caption": "수리 전 · 손상 부위 가까이"
+      },
+      {
+        "file": "04-after.jpg",
+        "alt": "수리 후, 보수도장 마친 앞범퍼",
+        "caption": "수리 후 · 보수도장 마친 앞범퍼"
+      },
+      {
+        "file": "05-after.jpg",
+        "alt": "수리 후, 앞범퍼 모서리",
+        "caption": "수리 후 · 앞범퍼 모서리"
+      }
+    ]
+  },
+  {
+    "slug": "benz-e350-rear-fender-bumper",
+    "title": "벤츠 E350 뒷휀다 · 뒷범퍼 판금도장",
+    "car": "메르세데스-벤츠 E350",
+    "part": "뒷휀다 · 뒷범퍼",
+    "work": "판금 · 도장",
+    "summary": "뒷바퀴 앞뒤로 뒷휀다와 뒷범퍼가 긁히고 상대 차량 도료가 묻은 상태였습니다. 판금으로 라인을 잡고 도장해 원래 색과 광택으로 마감했습니다.",
+    "services": [
+      "pangeum",
+      "dosaek",
+      "import-car"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "수리 전, 뒷휀다 긁힘과 상대 차량 도료",
+        "caption": "수리 전 · 뒷휀다 긁힘과 상대 차량 도료"
+      },
+      {
+        "file": "02-before.jpg",
+        "alt": "수리 전, 뒷범퍼까지 이어진 긁힘",
+        "caption": "수리 전 · 뒷범퍼까지 이어진 긁힘"
+      },
+      {
+        "file": "03-after.jpg",
+        "alt": "수리 후, 판금도장 마친 뒷휀다와 뒷범퍼",
+        "caption": "수리 후 · 판금도장 마친 뒷휀다와 뒷범퍼"
+      }
+    ]
+  },
+  {
+    "slug": "kia-sportage-rear-fender-rust",
+    "title": "기아 스포티지 뒷휀다 녹 제거 · 방청 판금도장",
+    "car": "기아 스포티지",
+    "part": "뒷휀다 (뒷도어와 만나는 아래쪽)",
+    "work": "녹 제거 · 방청 · 판금 · 도장",
+    "summary": "뒷도어와 뒷휀다가 만나는 아래쪽에 녹이 올라와 도장이 벗겨진 상태였습니다. 녹을 제거하고 방청 처리한 뒤 판금·도장으로 마감했습니다.",
+    "services": [
+      "oehyeong",
+      "pangeum",
+      "dosaek"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "수리 전, 뒷도어와 뒷휀다가 만나는 아래쪽",
+        "caption": "수리 전 · 뒷도어와 뒷휀다가 만나는 아래쪽"
+      },
+      {
+        "file": "02-before.jpg",
+        "alt": "수리 전, 녹이 올라와 벗겨진 도장",
+        "caption": "수리 전 · 녹이 올라와 벗겨진 도장"
+      },
+      {
+        "file": "03-after.jpg",
+        "alt": "수리 후, 녹 제거·방청 후 도장한 뒷휀다",
+        "caption": "수리 후 · 녹 제거·방청 후 도장한 뒷휀다"
+      }
+    ]
+  },
+  {
+    "slug": "kia-carnival-insurance-door",
+    "title": "기아 카니발 보험수리 · 앞휀다~뒷도어 판금도장",
+    "car": "기아 카니발",
+    "part": "앞휀다 ~ 뒷도어 (옆면)",
+    "work": "보험수리 · 판금 · 도장",
+    "summary": "옆면 도어 사이가 긁히고 눌린 사고 차량입니다. 보험으로 처리해 앞휀다부터 뒷도어까지 판금 후 도장했습니다.",
+    "services": [
+      "insurance",
+      "pangeum",
+      "dosaek"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "수리 전, 앞도어~뒷도어 사이 긁힘과 눌림",
+        "caption": "수리 전 · 앞도어~뒷도어 사이 긁힘과 눌림"
+      },
+      {
+        "file": "02-before.jpg",
+        "alt": "수리 전, 손상 부위 가까이",
+        "caption": "수리 전 · 손상 부위 가까이"
+      },
+      {
+        "file": "03-work.jpg",
+        "alt": "작업 중, 판금 후 퍼티 작업",
+        "caption": "작업 중 · 판금 후 퍼티 작업"
+      },
+      {
+        "file": "04-work.jpg",
+        "alt": "작업 중, 도장 전 마스킹",
+        "caption": "작업 중 · 도장 전 마스킹"
+      },
+      {
+        "file": "05-work.jpg",
+        "alt": "작업 중, 도장 부스에서 도장",
+        "caption": "작업 중 · 도장 부스에서 도장"
+      },
+      {
+        "file": "06-after.jpg",
+        "alt": "수리 후, 출고 전 옆모습",
+        "caption": "수리 후 · 출고 전 옆모습"
+      }
+    ]
+  },
+  {
+    "slug": "bmw-5-series-front-bumper",
+    "title": "BMW 5시리즈 앞범퍼 긁힘 부분도색",
+    "car": "BMW 5시리즈",
+    "part": "앞범퍼 하단",
+    "work": "부분도색",
+    "summary": "앞범퍼 아래쪽 모서리가 긁히고 도장이 까진 상태였습니다. 손상 부위만 부분도색해 주변과 색 차이 없이 마감했습니다.",
+    "services": [
+      "dosaek",
+      "import-car"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "수리 전, 앞범퍼 하단 긁힘",
+        "caption": "수리 전 · 앞범퍼 하단 긁힘"
+      },
+      {
+        "file": "02-before.jpg",
+        "alt": "수리 전, 까진 도장 부위",
+        "caption": "수리 전 · 까진 도장 부위"
+      },
+      {
+        "file": "03-before.jpg",
+        "alt": "수리 전, 도장 부스 입고",
+        "caption": "수리 전 · 도장 부스 입고"
+      },
+      {
+        "file": "04-work.jpg",
+        "alt": "작업 중, 부분도색 마스킹",
+        "caption": "작업 중 · 부분도색 마스킹"
+      },
+      {
+        "file": "05-after.jpg",
+        "alt": "수리 후, 부분도색 마친 앞범퍼 하단",
+        "caption": "수리 후 · 부분도색 마친 앞범퍼 하단"
+      },
+      {
+        "file": "06-after.jpg",
+        "alt": "앞범퍼 전체 모습",
+        "caption": "앞범퍼 전체 모습"
+      }
+    ]
+  },
+  {
+    "slug": "audi-a6-rust-repair",
+    "title": "아우디 A6 뒷휀다 녹 제거 · 방청 및 외형복원",
+    "car": "아우디 A6",
+    "part": "뒷휀다 (주유구 쪽 휠아치 주변)",
+    "work": "녹 제거 · 방청 · 판금 · 도장",
+    "summary": "뒷바퀴 휠아치 주변에 녹이 번지면서 도장이 들뜨고 갈라진 상태였습니다. 녹을 모두 걷어내고 방청 처리한 뒤, 판금과 도장으로 원래 외형을 되살렸습니다.",
+    "services": [
+      "oehyeong",
+      "pangeum",
+      "dosaek",
+      "import-car"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "수리 전, 뒷휀다 휠아치 주변에 번진 녹",
+        "caption": "수리 전 · 뒷휀다 휠아치 주변에 번진 녹"
+      },
+      {
+        "file": "02-before.jpg",
+        "alt": "수리 전, 녹이 올라와 들뜬 도장",
+        "caption": "수리 전 · 녹이 올라와 들뜬 도장"
+      },
+      {
+        "file": "03-before.jpg",
+        "alt": "수리 전, 녹 부위 가까이",
+        "caption": "수리 전 · 녹 부위 가까이"
+      },
+      {
+        "file": "04-before.jpg",
+        "alt": "수리 전, 휠아치 끝부분 갈라짐",
+        "caption": "수리 전 · 휠아치 끝부분 갈라짐"
+      },
+      {
+        "file": "05-work.jpg",
+        "alt": "작업 중, 녹 제거 후 방청·바탕 작업",
+        "caption": "작업 중 · 녹 제거 후 방청·바탕 작업"
+      },
+      {
+        "file": "06-work.jpg",
+        "alt": "작업 중, 도장 전 마스킹",
+        "caption": "작업 중 · 도장 전 마스킹"
+      },
+      {
+        "file": "07-work.jpg",
+        "alt": "작업 중, 도장 부스에서 도장",
+        "caption": "작업 중 · 도장 부스에서 도장"
+      },
+      {
+        "file": "08-after.jpg",
+        "alt": "수리 후, 녹 없이 정리된 뒷휀다",
+        "caption": "수리 후 · 녹 없이 정리된 뒷휀다"
+      }
+    ]
+  },
+  {
     "slug": "hyundai-sonata-dn8-rear-bumper",
     "title": "현대 쏘나타 DN8 뒷범퍼 보수도장 · 하단범퍼 교환",
     "car": "현대 쏘나타 (DN8)",
@@ -31,94 +406,5 @@
         "caption": "수리 후 · 도장 부스에서 보수도장을 마친 뒷범퍼"
       }
     ]
-  },
-  {
-    "slug": "audi-a6-rust-repair",
-    "draft": true,
-    "title": "아우디 A6 뒷휀다 녹 제거 · 방청 및 외형복원",
-    "car": "아우디 A6",
-    "part": "뒷휀다 (주유구 쪽 휠아치 주변)",
-    "work": "녹 제거 · 방청 · 판금 · 도장",
-    "summary": "뒷바퀴 휠아치 주변에 녹이 번지면서 도장이 들뜨고 갈라진 상태였습니다. 녹을 모두 걷어내고 방청 처리한 뒤, 판금과 도장으로 원래 외형을 되살렸습니다.",
-    "services": [
-      "oehyeong",
-      "pangeum",
-      "dosaek",
-      "import-car"
-    ],
-    "photos": []
-  },
-  {
-    "slug": "bmw-5-series-front-bumper",
-    "draft": true,
-    "title": "BMW 5시리즈 앞범퍼 긁힘 부분도색",
-    "car": "BMW 5시리즈",
-    "part": "앞범퍼 하단",
-    "work": "부분도색",
-    "summary": "앞범퍼 아래쪽 모서리가 긁히고 도장이 까진 상태였습니다. 손상 부위만 부분도색해 주변과 색 차이 없이 마감했습니다.",
-    "services": [
-      "dosaek",
-      "import-car"
-    ],
-    "photos": []
-  },
-  {
-    "slug": "kia-carnival-insurance-door",
-    "draft": true,
-    "title": "기아 카니발 보험수리 · 앞휀다~뒷도어 판금도장",
-    "car": "기아 카니발",
-    "part": "앞휀다 ~ 뒷도어 (옆면)",
-    "work": "보험수리 · 판금 · 도장",
-    "summary": "옆면 도어 사이가 긁히고 눌린 사고 차량입니다. 보험으로 처리해 앞휀다부터 뒷도어까지 판금 후 도장했습니다.",
-    "services": [
-      "insurance",
-      "pangeum",
-      "dosaek"
-    ],
-    "photos": []
-  },
-  {
-    "slug": "kia-sportage-rear-fender-rust",
-    "draft": true,
-    "title": "기아 스포티지 뒷휀다 녹 제거 · 방청 판금도장",
-    "car": "기아 스포티지",
-    "part": "뒷휀다 (뒷도어와 만나는 아래쪽)",
-    "work": "녹 제거 · 방청 · 판금 · 도장",
-    "summary": "뒷도어와 뒷휀다가 만나는 아래쪽에 녹이 올라와 도장이 벗겨진 상태였습니다. 녹을 제거하고 방청 처리한 뒤 판금·도장으로 마감했습니다.",
-    "services": [
-      "oehyeong",
-      "pangeum",
-      "dosaek"
-    ],
-    "photos": []
-  },
-  {
-    "slug": "benz-e350-rear-fender-bumper",
-    "draft": true,
-    "title": "벤츠 E350 뒷휀다 · 뒷범퍼 판금도장",
-    "car": "메르세데스-벤츠 E350",
-    "part": "뒷휀다 · 뒷범퍼",
-    "work": "판금 · 도장",
-    "summary": "뒷바퀴 앞뒤로 뒷휀다와 뒷범퍼가 긁히고 상대 차량 도료가 묻은 상태였습니다. 판금으로 라인을 잡고 도장해 원래 색과 광택으로 마감했습니다.",
-    "services": [
-      "pangeum",
-      "dosaek",
-      "import-car"
-    ],
-    "photos": []
-  },
-  {
-    "slug": "kia-ray-ev-front-bumper",
-    "draft": true,
-    "title": "기아 레이 EV 앞범퍼 보수도장",
-    "car": "기아 레이 EV",
-    "part": "앞범퍼 (운전석 쪽 모서리)",
-    "work": "판금 · 보수도장",
-    "summary": "앞범퍼 모서리가 눌리고 긁힌 상태였습니다. 눌린 부분을 펴고 보수도장해 원래 모양과 색으로 되돌렸습니다.",
-    "services": [
-      "pangeum",
-      "dosaek"
-    ],
-    "photos": []
   }
 ]
