@@ -1,5 +1,45 @@
 [
   {
+    "slug": "tesla-model-3-rear-door",
+    "title": "테슬라 모델 3 롱레인지 뒷도어 판금도장",
+    "car": "테슬라 모델 3 롱레인지",
+    "part": "뒷도어",
+    "work": "판금 · 도장",
+    "summary": "뒷도어가 찍히고 눌린 상태였습니다. 판금으로 눌린 곳을 펴고 퍼티로 바탕을 잡은 뒤, 차량 색에 맞춰 도장해 마감했습니다.",
+    "services": [
+      "pangeum",
+      "dosaek",
+      "import-car"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "수리 전, 뒷도어 찍힘",
+        "caption": "수리 전 · 뒷도어 찍힘"
+      },
+      {
+        "file": "02-work.jpg",
+        "alt": "작업 중, 판금 후 퍼티",
+        "caption": "작업 중 · 판금 후 퍼티"
+      },
+      {
+        "file": "03-work.jpg",
+        "alt": "작업 중, 도장 전 마스킹",
+        "caption": "작업 중 · 도장 전 마스킹"
+      },
+      {
+        "file": "04-work.jpg",
+        "alt": "작업 중, 도장 부스에서 도장",
+        "caption": "작업 중 · 도장 부스에서 도장"
+      },
+      {
+        "file": "05-after.jpg",
+        "alt": "수리 후, 판금도장 마친 뒷도어",
+        "caption": "수리 후 · 판금도장 마친 뒷도어"
+      }
+    ]
+  },
+  {
     "slug": "hyundai-ioniq-6-n-fender-bumper",
     "title": "현대 아이오닉 6 N 앞휀다 판금 · 앞범퍼 교환",
     "car": "현대 아이오닉 6 N",
