@@ -40,6 +40,9 @@
   "description": "판금·도색·외형복원, 수입·국산 전 차종 사고차 수리, 보험 지정 업체, 수용성 도장, 특수 열처리"
 }
 </script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" crossorigin>
+<link rel="modulepreload" href="car.js">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
@@ -64,17 +67,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:
 a{color:inherit;text-decoration:none}
 img,svg{display:block}
 
-#scene{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+#scene{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block;opacity:0;transition:opacity 1.2s ease}
+#scene.ready{opacity:1}
 .no-webgl #scene{display:none}
 .no-webgl body,.no-webgl{background:radial-gradient(90% 60% at 70% 30%,#1a2436 0%,var(--bg) 70%) fixed}
 .vignette{position:fixed;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(0,0,0,.55) 100%)}
-
-/* loader */
-#loader{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:var(--bg);transition:opacity .8s ease,visibility .8s}
-#loader.done{opacity:0;visibility:hidden}
-.ld{display:grid;justify-items:center;gap:18px}
-.ld p{font-size:.85rem;letter-spacing:.2em;color:var(--mute)}
 
 /* header */
 .top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:24px;
@@ -287,19 +285,12 @@ footer b{color:var(--text)}
 </style>
 <script type="importmap">
 {"imports":{
-  "three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js",
   "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
 }}
 </script>
 </head>
 <body>
-
-<div id="loader" aria-hidden="true">
-  <div class="ld">
-    <div class="brand"><span class="mark">M</span><span>미래자동차공업사</span></div>
-    <p>도장 부스 준비 중</p>
-  </div>
-</div>
 
 <canvas id="scene" aria-hidden="true"></canvas>
 <div class="vignette"></div>
@@ -621,8 +612,8 @@ footer b{color:var(--text)}
   };
   addEventListener('scroll', railUpdate, {passive:true}); railUpdate();
 
-  // Fallback: if the 3D scene never reports ready, reveal the page anyway
-  setTimeout(() => { if (!window.__sceneReady) { document.documentElement.classList.add('no-webgl'); document.getElementById('loader').classList.add('done'); } }, 15000);
+  // If the 3D scene never loads, show the static background instead
+  setTimeout(() => { if (!window.__sceneReady) document.documentElement.classList.add('no-webgl'); }, 15000);
 })();
 </script>
 
@@ -704,8 +695,7 @@ import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { buildCar, buildDamage, DAMAGE_POS } from './car.js';
 
-const loaderEl = document.getElementById('loader');
-const fail = () => { document.documentElement.classList.add('no-webgl'); loaderEl.classList.add('done'); window.__sceneReady = true; };
+const fail = () => { document.documentElement.classList.add('no-webgl'); window.__sceneReady = true; };
 
 const canvas = document.getElementById('scene');
 let renderer;
@@ -921,7 +911,7 @@ stage = targetStage();
 ready = true;
 window.__sceneReady = true;
 renderer.compile(scene, camera);
-setTimeout(() => loaderEl.classList.add('done'), 250);
+requestAnimationFrame(() => canvas.classList.add('ready'));
 
 frame();
 
