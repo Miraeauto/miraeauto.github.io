@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Generate service pages, repair-case pages and sitemap.xml.
+"""Generate service pages, repair-case pages, guide articles and sitemap.xml.
 
 Run from the repo root:  python3 _build/build.py
-Cases live in _build/cases.json; photos go in assets/cases/<slug>/.
+Cases live in _build/cases.json (photos in assets/cases/<slug>/); articles in _build/guides.py.
 Folders starting with "_" are not published by GitHub Pages.
 """
 import json
 import html
 from datetime import date
 from pathlib import Path
+
+from guides import GUIDES
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://miraeauto.github.io"
@@ -129,6 +131,7 @@ def head(title, desc, path, extra_ld=None, og_image=None):
   <nav aria-label="주요 메뉴">
     <a href="/#services">서비스</a>
     <a href="/cases/">작업 사례</a>
+    <a href="/guide/">자동차 정보</a>
     <a href="/#consult">수리 상담</a>
     <a href="/#contact">오시는 길</a>
   </nav>
@@ -154,7 +157,7 @@ def foot():
     links = "".join(f'<a href="/{s["slug"]}/">{E(s["name"])}</a>' for s in SERVICES)
     return f"""</main>
 <footer>
-  <nav class="flinks" aria-label="서비스">{links}<a href="/cases/">작업 사례</a></nav>
+  <nav class="flinks" aria-label="서비스">{links}<a href="/cases/">작업 사례</a><a href="/guide/">자동차 정보</a></nav>
   <b>(주)미래자동차공업사</b>
   <span>{ADDRESS} · H.P {PHONE} · FAX 02-3494-6046</span>
 </footer>
@@ -186,6 +189,9 @@ def service_page(s, cases):
     related = [c for c in cases if s["slug"] in c.get("services", [])][:3]
     if related:
         out += '<section><h2>작업 사례</h2><div class="cards">' + "".join(case_card(c) for c in related) + "</div></section>\n"
+    guides = [g for g in GUIDES if s["slug"] in g["services"]]
+    if guides:
+        out += '<section><h2>알아두면 좋은 글</h2><div class="glist">' + "".join(guide_card(g) for g in guides) + "</div></section>\n"
     out += cta()
     others = "".join(f'<a class="chip" href="/{o["slug"]}/">{E(o["name"])}</a>' for o in SERVICES if o is not s)
     out += f'<section><h2>다른 서비스</h2><div class="chips">{others}</div></section>\n</article>\n'
@@ -233,6 +239,45 @@ def cases_index(cases):
     return out + foot()
 
 
+def guide_card(g):
+    return f'<a class="gcard" href="/guide/{g["slug"]}/"><b>{E(g["title"])}</b><span>{E(g["desc"])}</span></a>'
+
+
+def guide_page(g, cases):
+    path = f"/guide/{g['slug']}/"
+    trail, crumb_ld = crumbs([("홈", "/"), ("자동차 정보", "/guide/"), (g["title"], path)])
+    article_ld = {"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["desc"],
+                  "inLanguage": "ko", "mainEntityOfPage": SITE + path, "dateModified": TODAY,
+                  "author": {"@type": "Organization", "name": "(주)미래자동차공업사", "url": SITE + "/"},
+                  "publisher": {"@type": "Organization", "name": "(주)미래자동차공업사", "url": SITE + "/"}}
+    out = head(g["title"], g["desc"], path, {"@context": "https://schema.org", "@graph": [article_ld, crumb_ld]})
+    out += f'<article class="wrap prose">\n{trail}<p class="eyebrow">GUIDE</p>\n<h1>{E(g["title"])}</h1>\n<p class="lead">{E(g["lead"])}</p>\n'
+    for h, paras, items in g["sections"]:
+        out += f"<section><h2>{E(h)}</h2>" + "".join(f"<p>{E(t)}</p>" for t in paras)
+        if items:
+            out += "<ul>" + "".join(f"<li>{E(t)}</li>" for t in items) + "</ul>"
+        out += "</section>\n"
+    by = {c["slug"]: c for c in cases}
+    related = [by[x] for x in g.get("cases", []) if x in by][:3]
+    if related:
+        out += '<section><h2>실제 작업 사례</h2><div class="cards">' + "".join(case_card(c) for c in related) + "</div></section>\n"
+    links = "".join(f'<a class="chip" href="/{s["slug"]}/">{E(s["name"])}</a>' for s in SERVICES if s["slug"] in g["services"])
+    out += f'<section><h2>관련 서비스</h2><div class="chips">{links}</div></section>\n'
+    out += cta()
+    more = [o for o in GUIDES if o is not g]
+    out += '<section><h2>다른 글</h2><div class="glist">' + "".join(guide_card(o) for o in more) + "</div></section>\n</article>\n"
+    return out + foot()
+
+
+def guide_index():
+    trail, crumb_ld = crumbs([("홈", "/"), ("자동차 정보", "/guide/")])
+    out = head("자동차 정보 · 판금 도색 궁금증", "문콕, 녹, 범퍼, 보험 수리, 부분도색 색 차이까지. 판금·도색을 맡기기 전에 알아두면 좋은 정보를 정리했습니다.", "/guide/", crumb_ld)
+    out += f'<article class="wrap">\n{trail}<p class="eyebrow">GUIDE</p>\n<h1>자동차 정보</h1>\n<p class="lead">판금·도색을 맡기기 전에 궁금한 점을 정리했습니다.</p>\n'
+    out += '<div class="glist">' + "".join(guide_card(g) for g in GUIDES) + "</div>\n"
+    out += cta() + "</article>\n"
+    return out + foot()
+
+
 def sitemap(paths):
     urls = "".join(f"  <url>\n    <loc>{SITE}{p}</loc>\n    <lastmod>{TODAY}</lastmod>\n  </url>\n" for p in paths)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n'
@@ -256,8 +301,16 @@ def main():
         d.mkdir(exist_ok=True)
         (d / "index.html").write_text(case_page(c), encoding="utf-8")
         paths.append(f"/cases/{c['slug']}/")
+    (ROOT / "guide").mkdir(exist_ok=True)
+    (ROOT / "guide" / "index.html").write_text(guide_index(), encoding="utf-8")
+    paths.append("/guide/")
+    for g in GUIDES:
+        d = ROOT / "guide" / g["slug"]
+        d.mkdir(exist_ok=True)
+        (d / "index.html").write_text(guide_page(g, cases), encoding="utf-8")
+        paths.append(f"/guide/{g['slug']}/")
     (ROOT / "sitemap.xml").write_text(sitemap(paths), encoding="utf-8")
-    print(f"built {len(SERVICES)} service pages, {len(cases)} case pages, sitemap with {len(paths)} urls")
+    print(f"built {len(SERVICES)} service pages, {len(cases)} case pages, {len(GUIDES)} guides, sitemap with {len(paths)} urls")
 
 
 if __name__ == "__main__":
