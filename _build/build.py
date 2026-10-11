@@ -9,6 +9,7 @@ import json
 import html
 from datetime import date
 from pathlib import Path
+from urllib.parse import quote
 
 from guides import GUIDES
 
@@ -90,6 +91,8 @@ SERVICES = [
 PROCESS = ["손상 진단", "판금 복원", "퍼티 · 서페이서", "조색 · 수용성 도장", "특수 열처리 · 광택"]
 
 E = html.escape
+SMS_BODY = "안녕하세요, 수리 상담 문의드려요.\n차종: \n손상 부위: \n(사진 3장 첨부: 차 전체 / 손상된 쪽 옆면 / 손상 부위 가까이)"
+SMS_HREF = f"sms:{PHONE_TEL}?&body=" + quote(SMS_BODY)
 
 
 def head(title, desc, path, extra_ld=None, og_image=None):
@@ -147,7 +150,7 @@ def cta():
   <p>차 전체, 손상된 쪽 옆면, 손상 부위 가까이. 사진 3장을 문자로 보내주시면 확인 후 수리 방법을 알려드립니다.</p>
   <div class="cta-row">
     <a class="btn primary" href="tel:{PHONE_TEL}">전화 상담 {PHONE}</a>
-    <a class="btn ghost" href="sms:{PHONE_TEL}">문자로 사진 보내기</a>
+    <a class="btn ghost" href="{SMS_HREF}">문자로 사진 보내기</a>
   </div>
 </section>
 """
@@ -161,6 +164,7 @@ def foot():
   <b>(주)미래자동차공업사</b>
   <span>{ADDRESS} · H.P {PHONE} · FAX 02-3494-6046</span>
 </footer>
+<a class="fab-sms" href="{SMS_HREF}">📷 사진 보내고 상담받기</a>
 <a class="fab" href="tel:{PHONE_TEL}" aria-label="전화 상담">전화</a>
 </body>
 </html>
@@ -204,7 +208,7 @@ def case_card(c):
     return f'<a class="card" href="/cases/{c["slug"]}/"><div class="thumb">{img}</div><b>{E(c["title"])}</b><span>{E(c.get("date", ""))}</span></a>'
 
 
-def case_page(c):
+def case_page(c, cases):
     path = f"/cases/{c['slug']}/"
     trail, crumb_ld = crumbs([("홈", "/"), ("작업 사례", "/cases/"), (c["title"], path)])
     desc = c.get("summary") or f"{c['title']} - 도봉구 방학동 미래자동차공업사 작업 사례"
@@ -223,7 +227,16 @@ def case_page(c):
     links = "".join(f'<a class="chip" href="/{s["slug"]}/">{E(s["name"])}</a>' for s in SERVICES if s["slug"] in c.get("services", []))
     if links:
         out += f'<section><h2>관련 서비스</h2><div class="chips">{links}</div></section>\n'
-    out += cta() + "</article>\n"
+    out += cta()
+    guides = [g for g in GUIDES if c["slug"] in g.get("cases", [])]
+    if guides:
+        out += '<section><h2>이런 손상, 이렇게 알아보세요</h2><div class="glist">' + "".join(guide_card(g) for g in guides) + "</div></section>\n"
+    mine = set(c.get("services", []))
+    similar = sorted((o for o in cases if o is not c and mine & set(o.get("services", []))),
+                     key=lambda o: -len(mine & set(o.get("services", []))))[:3]
+    if similar:
+        out += '<section><h2>비슷한 작업 사례</h2><div class="cards">' + "".join(case_card(o) for o in similar) + "</div></section>\n"
+    out += "</article>\n"
     return out + foot()
 
 
@@ -299,7 +312,7 @@ def main():
     for c in cases:
         d = ROOT / "cases" / c["slug"]
         d.mkdir(exist_ok=True)
-        (d / "index.html").write_text(case_page(c), encoding="utf-8")
+        (d / "index.html").write_text(case_page(c, cases), encoding="utf-8")
         paths.append(f"/cases/{c['slug']}/")
     (ROOT / "guide").mkdir(exist_ok=True)
     (ROOT / "guide" / "index.html").write_text(guide_index(), encoding="utf-8")

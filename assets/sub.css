@@ -72,9 +72,10 @@ footer{padding:36px var(--gutter) 100px;border-top:1px solid var(--line);color:v
 footer b{color:var(--text)}
 .flinks{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:10px}
 .flinks a{text-decoration:underline;text-underline-offset:3px}
-.fab{display:none}
+.fab,.fab-sms{display:none}
 
 @media (max-width:760px){
+  .fab-sms{display:flex;position:fixed;left:16px;right:118px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:30;justify-content:center;padding:14px 18px;border-radius:999px;background:#fff;color:#0a0c0f;font-weight:700;box-shadow:0 12px 30px -10px rgba(0,0,0,.6)}
   .top nav,.top .call{display:none}
   .checks,.gallery{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr 1fr}
