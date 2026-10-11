@@ -1,0 +1,69 @@
+name: IndexNow
+
+# 새 정보글/작업사례 페이지가 main에 올라오면, 배포가 끝난 뒤
+# IndexNow(Bing·네이버 등)에 색인 요청을 보냅니다.
+# 구글은 IndexNow를 받지 않으므로 sitemap.xml(lastmod)과 서치콘솔로 처리합니다.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "guide/**"
+      - "cases/**"
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "직접 요청할 URL (공백으로 구분). 비워두면 최근 커밋에서 새로 생긴 페이지"
+        required: false
+
+env:
+  HOST: miraeauto.github.io
+  KEY: 428b7575364ec3c8d4455f5a85bbd8fa
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 요청할 URL 고르기
+        id: urls
+        run: |
+          if [ -n "${{ github.event.inputs.urls }}" ]; then
+            URLS="${{ github.event.inputs.urls }}"
+          else
+            BEFORE="${{ github.event.before }}"
+            if [ -z "$BEFORE" ] || ! git cat-file -e "$BEFORE" 2>/dev/null; then BEFORE=HEAD~1; fi
+            URLS=$(git diff --name-only --diff-filter=A "$BEFORE" HEAD -- 'guide/*/index.html' 'cases/*/index.html' \
+              | sed -E "s#^(.*)index\.html\$#https://${HOST}/\1#")
+          fi
+          URLS=$(echo $URLS)
+          echo "list=$URLS" >> "$GITHUB_OUTPUT"
+          echo "요청 대상: ${URLS:-없음}"
+
+      - name: 배포 완료 기다리기
+        if: steps.urls.outputs.list != ''
+        run: |
+          for u in ${{ steps.urls.outputs.list }}; do
+            for i in $(seq 1 20); do
+              code=$(curl -s -o /dev/null -w "%{http_code}" "$u")
+              [ "$code" = "200" ] && { echo "OK $u"; break; }
+              echo "대기 중 ($code) $u"; sleep 30
+            done
+          done
+          curl -sf "https://${HOST}/${KEY}.txt" | grep -q "$KEY" || { echo "키 파일이 아직 안 보여요"; exit 1; }
+
+      - name: IndexNow 색인 요청
+        if: steps.urls.outputs.list != ''
+        run: |
+          LIST=$(printf '"%s",' ${{ steps.urls.outputs.list }}); LIST="[${LIST%,}]"
+          BODY="{\"host\":\"${HOST}\",\"key\":\"${KEY}\",\"keyLocation\":\"https://${HOST}/${KEY}.txt\",\"urlList\":${LIST}}"
+          ok=0
+          for ep in https://api.indexnow.org/indexnow https://searchadvisor.naver.com/indexnow https://www.bing.com/indexnow; do
+            code=$(curl -s -o /tmp/r.txt -w "%{http_code}" -X POST "$ep" -H "Content-Type: application/json; charset=utf-8" -d "$BODY")
+            echo "$ep → $code $(head -c 200 /tmp/r.txt)"
+            case "$code" in 200|202) ok=1;; esac
+          done
+          [ "$ok" = 1 ] || { echo "모든 색인 요청이 실패했어요"; exit 1; }

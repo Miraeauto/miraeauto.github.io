@@ -291,8 +291,28 @@ def guide_index():
     return out + foot()
 
 
+import re
+
+_OLD_LASTMOD = {}
+LASTMOD = {}
+
+
+def _norm(s):
+    return re.sub(r'"dateModified": "[^"]*"', "", s)
+
+
+def put(url_path, file, content):
+    """Write a page only if it really changed, and record its sitemap lastmod."""
+    old = file.read_text(encoding="utf-8") if file.exists() else None
+    if old is not None and _norm(old) == _norm(content):
+        LASTMOD[url_path] = _OLD_LASTMOD.get(url_path, TODAY)
+        return
+    file.write_text(content, encoding="utf-8")
+    LASTMOD[url_path] = TODAY
+
+
 def sitemap(paths):
-    urls = "".join(f"  <url>\n    <loc>{SITE}{p}</loc>\n    <lastmod>{TODAY}</lastmod>\n  </url>\n" for p in paths)
+    urls = "".join(f"  <url>\n    <loc>{SITE}{p}</loc>\n    <lastmod>{LASTMOD.get(p, TODAY)}</lastmod>\n  </url>\n" for p in paths)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n'
 
 
@@ -300,27 +320,31 @@ def main():
     cases = json.loads((ROOT / "_build" / "cases.json").read_text(encoding="utf-8"))
     cases = [c for c in cases if not c.get("draft")]
     cases.sort(key=lambda c: c.get("date", ""), reverse=True)
+    sm = ROOT / "sitemap.xml"
+    if sm.exists():
+        _OLD_LASTMOD.update({u[len(SITE):]: d for u, d in re.findall(r"<loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>", sm.read_text(encoding="utf-8"))})
     paths = ["/"]
+    LASTMOD["/"] = _OLD_LASTMOD.get("/", TODAY)
     for s in SERVICES:
         d = ROOT / s["slug"]
         d.mkdir(exist_ok=True)
-        (d / "index.html").write_text(service_page(s, cases), encoding="utf-8")
+        put(f"/{s['slug']}/", d / "index.html", service_page(s, cases))
         paths.append(f"/{s['slug']}/")
     (ROOT / "cases").mkdir(exist_ok=True)
-    (ROOT / "cases" / "index.html").write_text(cases_index(cases), encoding="utf-8")
+    put("/cases/", ROOT / "cases" / "index.html", cases_index(cases))
     paths.append("/cases/")
     for c in cases:
         d = ROOT / "cases" / c["slug"]
         d.mkdir(exist_ok=True)
-        (d / "index.html").write_text(case_page(c, cases), encoding="utf-8")
+        put(f"/cases/{c['slug']}/", d / "index.html", case_page(c, cases))
         paths.append(f"/cases/{c['slug']}/")
     (ROOT / "guide").mkdir(exist_ok=True)
-    (ROOT / "guide" / "index.html").write_text(guide_index(), encoding="utf-8")
+    put("/guide/", ROOT / "guide" / "index.html", guide_index())
     paths.append("/guide/")
     for g in GUIDES:
         d = ROOT / "guide" / g["slug"]
         d.mkdir(exist_ok=True)
-        (d / "index.html").write_text(guide_page(g, cases), encoding="utf-8")
+        put(f"/guide/{g['slug']}/", d / "index.html", guide_page(g, cases))
         paths.append(f"/guide/{g['slug']}/")
     (ROOT / "sitemap.xml").write_text(sitemap(paths), encoding="utf-8")
     print(f"built {len(SERVICES)} service pages, {len(cases)} case pages, {len(GUIDES)} guides, sitemap with {len(paths)} urls")
