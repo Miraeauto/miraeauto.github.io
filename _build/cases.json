@@ -1,5 +1,44 @@
 [
   {
+    "slug": "kia-pv5-rear-door",
+    "title": "기아 PV5 뒷문(트렁크 뒷판) 판금도색",
+    "car": "기아 PV5",
+    "part": "뒷문 (트렁크 뒷판)",
+    "work": "판금 · 도색",
+    "summary": "뒷문 아래쪽이 넓게 눌려 찌그러진 상태였습니다. 판금으로 형태를 펴고 퍼티로 면을 잡은 뒤, 도장 부스에서 차량 색에 맞춰 도색해 마감했습니다.",
+    "services": [
+      "pangeum",
+      "dosaek"
+    ],
+    "photos": [
+      {
+        "file": "01-before.jpg",
+        "alt": "수리 전, 뒷문 아래쪽 찌그러짐",
+        "caption": "수리 전 · 뒷문 아래쪽 찌그러짐"
+      },
+      {
+        "file": "02-work.jpg",
+        "alt": "작업 중, 판금 후 퍼티로 면 잡기",
+        "caption": "작업 중 · 판금 후 퍼티로 면 잡기"
+      },
+      {
+        "file": "03-work.jpg",
+        "alt": "작업 중, 도장 부스에서 도장",
+        "caption": "작업 중 · 도장 부스에서 도장"
+      },
+      {
+        "file": "04-work.jpg",
+        "alt": "작업 중, 도장 마친 뒷문 패널",
+        "caption": "작업 중 · 도장 마친 뒷문 패널"
+      },
+      {
+        "file": "05-after.jpg",
+        "alt": "수리 후, 판금도색 마친 뒷문",
+        "caption": "수리 후 · 판금도색 마친 뒷문"
+      }
+    ]
+  },
+  {
     "slug": "tesla-front-bumper-partial-paint",
     "title": "테슬라 앞범퍼 긁힘 부분도색",
     "car": "테슬라",
