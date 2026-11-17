@@ -88,6 +88,18 @@ SERVICES = [
     },
 ]
 
+FULL_PAINT = {
+    "slug": "full-paint",
+    "title": "방학동 자동차 전체 도색 · 전체 도장 가격",
+    "desc": "도봉구 방학동 미래자동차공업사 자동차 전체 도색(전체 도장) 가격. 경차·소형 180만원, 준중형·중형 200만원, 준대형·대형 220만원, SUV 250만원. 지붕 미포함, 작업기간 약 1주일.",
+    "prices": [
+        ("경차 · 소형", "모닝 · 레이 · 캐스퍼 등", 180),
+        ("준중형 · 중형", "아반떼 · K3 · 쏘나타 · K5 등", 200),
+        ("준대형 · 대형", "그랜저 · K8 · G80 등", 220),
+        ("SUV", "투싼 · 쏘렌토 · 팰리세이드 등", 250),
+    ],
+}
+
 PROCESS = ["손상 진단", "판금 복원", "퍼티 · 서페이서", "조색 · 수용성 도장", "특수 열처리 · 광택"]
 
 E = html.escape
@@ -175,7 +187,7 @@ def foot():
     links = "".join(f'<a href="/{s["slug"]}/">{E(s["name"])}</a>' for s in SERVICES)
     return f"""</main>
 <footer>
-  <nav class="flinks" aria-label="서비스">{links}<a href="/cases/">작업 사례</a><a href="/guide/">자동차 정보</a></nav>
+  <nav class="flinks" aria-label="서비스">{links}<a href="/full-paint/">전체 도색 가격</a><a href="/cases/">작업 사례</a><a href="/guide/">자동차 정보</a></nav>
   <b>(주)미래자동차공업사</b>
   <span>{ADDRESS} · H.P {PHONE} · FAX 02-3494-6046</span>
 </footer>
@@ -201,6 +213,8 @@ def service_page(s, cases):
                   "description": s["desc"]}
     out = head(s["title"], s["desc"], path, {"@context": "https://schema.org", "@graph": [service_ld, crumb_ld]})
     out += f'<article class="wrap">\n{trail}<p class="eyebrow">SERVICE</p>\n<h1>{E(s["h1"])}</h1>\n<p class="lead">{E(s["lead"])}</p>\n'
+    if s["slug"] == "dosaek":
+        out += '<a class="promo-box" href="/full-paint/"><b>전체 도색 · 전체 도장 가격 보기</b><span>경차·소형 180만원부터, 차급별 정해진 가격 →</span></a>\n'
     out += '<section><h2>이럴 때 맡겨 주세요</h2><ul class="checks">' + "".join(f"<li>{E(w)}</li>" for w in s["when"]) + "</ul></section>\n"
     for h, p in s["body"]:
         out += f"<section><h2>{E(h)}</h2><p>{E(p)}</p></section>\n"
@@ -264,6 +278,42 @@ def cases_index(cases):
     else:
         out += '<p class="empty">작업 사례를 준비하고 있어요. 곧 실제 수리 전후 사진으로 채워집니다.</p>\n'
     out += cta() + "</article>\n"
+    return out + foot()
+
+
+def full_paint_page():
+    f = FULL_PAINT
+    path = f"/{f['slug']}/"
+    trail, crumb_ld = crumbs([("홈", "/"), ("도색", "/dosaek/"), ("전체 도색 가격", path)])
+    offers = [{"@type": "Offer", "name": f"전체 도색 ({n})", "price": str(p * 10000), "priceCurrency": "KRW"} for n, _, p in f["prices"]]
+    service_ld = {"@context": "https://schema.org", "@type": "Service", "name": "자동차 전체 도색 · 전체 도장", "serviceType": "자동차 전체 도색",
+                  "areaServed": "서울 도봉구", "provider": {"@type": "AutoBodyShop", "name": "(주)미래자동차공업사", "url": SITE + "/"},
+                  "description": f["desc"], "offers": offers}
+    faq = [
+        ("전체 도색 가격에 지붕도 포함되나요?", "지붕은 포함되지 않습니다. 지붕까지 원하시면 따로 문의해 주세요."),
+        ("작업 기간은 얼마나 걸리나요?", "약 1주일 정도 걸립니다. 차량 상태에 따라 달라질 수 있어 입고 전에 안내해 드립니다."),
+        ("카드로 결제할 수 있나요?", "가능합니다. 카드 결제 시 수수료는 별도입니다."),
+        ("우리 차가 어느 차급인지 모르겠어요.", "차종을 문자로 알려주시면 어느 차급인지 바로 안내해 드립니다."),
+    ]
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
+    out = head(f["title"], f["desc"], path, {"@context": "https://schema.org", "@graph": [service_ld, faq_ld, crumb_ld]})
+    out += f'<article class="wrap">\n{trail}<p class="eyebrow">FULL PAINT</p>\n<h1>방학동 자동차 전체 도색 · 전체 도장 가격</h1>\n'
+    out += '<p class="lead">자동차 전체 도색(전체 도장)을 차급별로 정해진 가격에 안내해 드립니다. 도봉구 방학동 미래자동차공업사에서 수용성 도료와 특수 열처리로 마감합니다.</p>\n'
+    rows = "".join(f'<tr><th scope="row"><b>{E(n)}</b><small>{E(ex)}</small></th><td>{p}<span>만원</span></td></tr>' for n, ex, p in f["prices"])
+    out += f'<section><h2>차급별 전체 도색 가격</h2><table class="ptable"><thead><tr><th scope="col">차급</th><th scope="col">가격</th></tr></thead><tbody>{rows}</tbody></table>'
+    out += '<ul class="pnotes"><li>지붕 미포함</li><li>작업기간 약 1주일</li><li>카드 결제 시 수수료 별도</li><li>자세한 사항은 전화나 문자로 문의해 주세요</li></ul></section>\n'
+    out += '<section><h2>전체 도색, 이럴 때 많이 하세요</h2><ul class="checks">' + "".join(f"<li>{E(w)}</li>" for w in [
+        "여러 곳에 긁힘과 까짐이 쌓여 부분도색으로는 끝이 없을 때", "오래되어 색이 바래고 광택이 사라졌을 때",
+        "패널마다 색이 조금씩 달라 보일 때", "차를 오래 타기로 하고 외관을 새로 정리하고 싶을 때"]) + "</ul></section>\n"
+    out += '<section><h2>작업 순서</h2><ol class="steps">' + "".join(f"<li><b>{i + 1:02d}</b>{E(t)}</li>" for i, t in enumerate(
+        ["차량 상태 확인과 상담", "부품 분리 · 마스킹", "샌딩 · 퍼티 · 서페이서로 바탕 정리", "조색 · 수용성 도장", "특수 열처리 · 광택 후 조립"])) + "</ol></section>\n"
+    out += '<section><h2>자주 묻는 질문</h2><dl class="faq">' + "".join(f"<dt>{E(q)}</dt><dd>{E(a)}</dd>" for q, a in faq) + "</dl></section>\n"
+    gl = [g for g in GUIDES if g["slug"] in ("paint-color-match", "new-car-paint-care")]
+    if gl:
+        out += '<section><h2>알아두면 좋은 글</h2><div class="glist">' + "".join(guide_card(g) for g in gl) + "</div></section>\n"
+    out += cta()
+    out += '<section><h2>관련 서비스</h2><div class="chips"><a class="chip" href="/dosaek/">도색</a><a class="chip" href="/oehyeong/">외형복원</a><a class="chip" href="/heat-treatment/">특수 열처리</a></div></section>\n</article>\n'
     return out + foot()
 
 
@@ -345,6 +395,10 @@ def main():
         d.mkdir(exist_ok=True)
         put(f"/{s['slug']}/", d / "index.html", service_page(s, cases))
         paths.append(f"/{s['slug']}/")
+    d = ROOT / FULL_PAINT["slug"]
+    d.mkdir(exist_ok=True)
+    put(f"/{FULL_PAINT['slug']}/", d / "index.html", full_paint_page())
+    paths.append(f"/{FULL_PAINT['slug']}/")
     (ROOT / "cases").mkdir(exist_ok=True)
     put("/cases/", ROOT / "cases" / "index.html", cases_index(cases))
     paths.append("/cases/")

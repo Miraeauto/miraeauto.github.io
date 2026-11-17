@@ -82,3 +82,20 @@ footer b{color:var(--text)}
   .cta-row .btn{flex:1 1 100%}
   .fab{display:flex;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:30;padding:14px 22px;border-radius:999px;background:var(--accent);color:#fff;font-weight:700;box-shadow:0 12px 30px -8px rgba(76,141,255,.9)}
 }
+
+.ptable{width:100%;border-collapse:separate;border-spacing:0;margin-top:16px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--bg2)}
+.ptable thead th{font-size:.8rem;color:var(--mute);font-weight:500;text-align:left;padding:10px 18px;border-bottom:1px solid var(--line)}
+.ptable thead th:last-child{text-align:right}
+.ptable tbody th{text-align:left;font-weight:400;padding:14px 18px;border-bottom:1px solid var(--line)}
+.ptable tbody th b{display:block;font-size:1.05rem}
+.ptable tbody th small{display:block;font-size:.8rem;color:var(--mute)}
+.ptable td{text-align:right;padding:14px 18px;border-bottom:1px solid var(--line);font-size:1.5rem;font-weight:900;white-space:nowrap}
+.ptable td span{font-size:.9rem;font-weight:700;color:var(--mute);margin-left:2px}
+.ptable tbody tr:last-child th,.ptable tbody tr:last-child td{border-bottom:0}
+.pnotes{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pnotes li{font-size:.85rem;padding:7px 12px;border-radius:10px;background:rgba(76,141,255,.12);color:#cfe0ff}
+.faq dt{font-weight:700;margin-top:16px}
+.faq dd{color:#c3cad4;margin-top:4px}
+.promo-box{display:grid;gap:2px;margin-top:24px;padding:18px 20px;border-radius:16px;background:linear-gradient(160deg,#142034,#0f141c);border:1px solid rgba(76,141,255,.35)}
+.promo-box b{font-size:1.05rem}
+.promo-box span{font-size:.88rem;color:#9fc2ff}
