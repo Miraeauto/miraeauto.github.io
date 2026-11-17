@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KT8WXW4R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="sms:"]');
+    if (!a) return;
+    gtag('event', a.href.indexOf('tel:') === 0 ? 'phone_call_click' : 'sms_click', {
+      link_text: (a.textContent || '').trim().slice(0, 40),
+      page_path: location.pathname
+    });
+  });
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>아우디 A6 뒷휀다 녹 제거 · 방청 및 외형복원 | 미래자동차공업사</title>
